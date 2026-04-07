@@ -1,10 +1,10 @@
-﻿# CDN Assets
+# CDN Assets
 
 Runtime assets for Reality Raid minigame.
 
 ## Version
 
-- Current release tag: 2026.04.07-1
+- Current release tag: v2026.04.07-1
 
 ## Paths
 
