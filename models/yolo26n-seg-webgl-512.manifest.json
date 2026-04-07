@@ -1,0 +1,40 @@
+{
+  "version": "v2026.04.08-1",
+  "input": {
+    "name": "images",
+    "width": 512,
+    "height": 512,
+    "layout": "BCHW"
+  },
+  "outputs": {
+    "pred": {
+      "name": "/model.23/Transpose_output_0",
+      "layout": "[1,N,116]"
+    },
+    "proto": {
+      "name": "output1",
+      "layout": "[1,32,128,128]"
+    }
+  },
+  "classMap": {
+    "39": "bottle",
+    "41": "cup",
+    "63": "laptop",
+    "64": "mouse",
+    "66": "keyboard",
+    "73": "book"
+  },
+  "protoSize": {
+    "width": 128,
+    "height": 128
+  },
+  "maskChannels": 32,
+  "model": {
+    "fileName": "yolo26n-seg-webgl-512.onnx",
+    "sizeBytes": 11131291
+  },
+  "manifest": {
+    "fileName": "yolo26n-seg-webgl-512.manifest.json",
+    "sizeBytes": 706
+  }
+}

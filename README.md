@@ -4,16 +4,16 @@ Runtime assets for Reality Raid minigame.
 
 ## Version
 
-- Current release tag: v2026.04.07-1
+- Current release tag: v2026.04.08-1
 
 ## Paths
 
-- models/yolo26n-seg.onnx
-- ort/ort-wasm-simd-threaded.wasm
+- models/yolo26n-seg-webgl-512.onnx
+- models/yolo26n-seg-webgl-512.manifest.json
 
 ## jsDelivr
 
-- https://cdn.jsdelivr.net/gh/StevenL2017/cdn@v2026.04.07-1/models/yolo26n-seg.onnx
-- https://cdn.jsdelivr.net/gh/StevenL2017/cdn@v2026.04.07-1/ort/ort-wasm-simd-threaded.wasm
+- https://cdn.jsdelivr.net/gh/StevenL2017/cdn@v2026.04.08-1/models/yolo26n-seg-webgl-512.onnx
+- https://cdn.jsdelivr.net/gh/StevenL2017/cdn@v2026.04.08-1/models/yolo26n-seg-webgl-512.manifest.json
 
 Do not rename published runtime assets in place. Publish a new tag for updates.
