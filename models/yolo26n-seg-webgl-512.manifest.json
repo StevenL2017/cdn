@@ -1,5 +1,5 @@
 {
-  "version": "v2026.04.08-1",
+  "version": "v2026.04.08-2",
   "input": {
     "name": "images",
     "width": 512,
@@ -31,7 +31,7 @@
   "maskChannels": 32,
   "model": {
     "fileName": "yolo26n-seg-webgl-512.onnx",
-    "sizeBytes": 11131291
+    "sizeBytes": 11140336
   },
   "manifest": {
     "fileName": "yolo26n-seg-webgl-512.manifest.json",
