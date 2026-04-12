@@ -1,0 +1,40 @@
+{
+  "version": "v2026.04.12-tfjs-1",
+  "input": {
+    "name": "images",
+    "width": 320,
+    "height": 320,
+    "layout": "NHWC"
+  },
+  "modelJsonPath": "model.json",
+  "modelJsonSizeBytes": 303868,
+  "weightShardPaths": [
+    "group1-shard1of5.bin",
+    "group1-shard2of5.bin",
+    "group1-shard3of5.bin",
+    "group1-shard4of5.bin",
+    "group1-shard5of5.bin"
+  ],
+  "weightShardSizes": [
+    2097152,
+    2097152,
+    2097152,
+    2097152,
+    1492888
+  ],
+  "output": {
+    "name": "output_0",
+    "layout": "[1,N,C]",
+    "format": "ultralytics-end2end-xyxy-score-class"
+  },
+  "labelsWhitelist": [
+    "bottle",
+    "cup",
+    "book",
+    "laptop",
+    "keyboard",
+    "mouse"
+  ],
+  "confidenceThreshold": 0.45,
+  "nmsIoUThreshold": 0.5
+}

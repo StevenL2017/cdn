@@ -1,0 +1,9 @@
+{
+  "version": "v2026.04.12-tfjs-1",
+  "runtime": "tfjs-graph-model",
+  "model": {
+    "path": "models/yolo26n-detect-tfjs-320/model.json",
+    "manifestPath": "models/yolo26n-detect-tfjs-320/manifest.json"
+  },
+  "createdAt": "2026-04-12T15:10:00+08:00"
+}
