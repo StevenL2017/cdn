@@ -8,3 +8,10 @@ Raw model URL:
 https://raw.githubusercontent.com/StevenL2017/cdn/main/models/yolo26n-640-tfjs-v1/model.json
 
 Generated from `yolo26n.pt` with a 640x640 TFJS export. The expected detection output is `(1, 300, 6)`.
+
+## YOLO26n 320 TFJS v1
+
+Raw model URL:
+https://raw.githubusercontent.com/StevenL2017/cdn/main/models/yolo26n-320-tfjs-v1/model.json
+
+Generated from `yolo26n.pt` with a 320x320 TFJS export. The expected detection output is `(1, 300, 6)`.
