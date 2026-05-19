@@ -1,0 +1,45 @@
+{
+  "formatVersion": 1,
+  "modelFile": "model.onnx",
+  "labelsFile": "labels.json",
+  "modelName": "NanoDet-Plus-m 320 ONNX",
+  "decoder": "nanodet-plus",
+  "inputName": "data",
+  "inputShape": [
+    1,
+    3,
+    320,
+    320
+  ],
+  "inputType": "float32",
+  "inputLayout": "NCHW",
+  "inputSize": 320,
+  "resizeMode": "stretch",
+  "colorOrder": "RGB",
+  "normalization": "meanStd",
+  "mean": [
+    103.53,
+    116.28,
+    123.675
+  ],
+  "std": [
+    57.375,
+    57.12,
+    58.395
+  ],
+  "outputNames": [
+    "output"
+  ],
+  "strides": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "regMax": 7,
+  "scoreThreshold": 0.35,
+  "iouThreshold": 0.5,
+  "maxDetections": 10,
+  "modelSha256": "4f12723cce3d48e47ca92cb925ba74d97a965c069208edca660bbb9f7ce2c610",
+  "modelBytes": 4793615
+}

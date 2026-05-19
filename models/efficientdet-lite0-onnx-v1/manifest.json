@@ -1,0 +1,37 @@
+{
+  "formatVersion": 1,
+  "modelFile": "model.onnx",
+  "labelsFile": "labels.json",
+  "modelName": "EfficientDet-Lite0 ONNX",
+  "decoder": "efficientdet-lite0",
+  "inputName": "serving_default_images:0",
+  "inputShape": [
+    1,
+    320,
+    320,
+    3
+  ],
+  "inputType": "uint8",
+  "inputLayout": "NHWC",
+  "inputSize": 320,
+  "resizeMode": "stretch",
+  "colorOrder": "RGB",
+  "normalization": "none",
+  "outputNames": [
+    "StatefulPartitionedCall:3",
+    "StatefulPartitionedCall:2",
+    "StatefulPartitionedCall:1",
+    "StatefulPartitionedCall:0"
+  ],
+  "outputRoleMap": {
+    "boxes": "StatefulPartitionedCall:3",
+    "classes": "StatefulPartitionedCall:2",
+    "scores": "StatefulPartitionedCall:1",
+    "count": "StatefulPartitionedCall:0"
+  },
+  "scoreThreshold": 0.35,
+  "iouThreshold": 0.5,
+  "maxDetections": 10,
+  "modelSha256": "16da0d971fed64ad06e5fc8e7ff7868d2141ca5f7d217524c286ad5df6d34c49",
+  "modelBytes": 13840766
+}
