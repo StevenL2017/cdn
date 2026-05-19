@@ -24,6 +24,6 @@
     "scoreThreshold":  0.35,
     "iouThreshold":  0.5,
     "maxDetections":  10,
-    "modelSha256":  "b93ce076ed8821d41a28e6565fb75882dac8fa5e365cbce259cbf1c7a4b172ba",
-    "modelBytes":  9757772
+    "modelSha256":  "02b1b05b9d782b96a5ee55c08eef5bb68dced32a68677db54ae6269dc8ece746",
+    "modelBytes":  9762461
 }
