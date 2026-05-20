@@ -1,0 +1,33 @@
+{
+    "formatVersion":  1,
+    "modelFile":  "model.onnx",
+    "labelsFile":  "labels.json",
+    "modelName":  "EfficientDet-Lite0 ONNX Raw",
+    "decoder":  "efficientdet-lite0-raw",
+    "inputName":  "serving_default_images:0",
+    "inputShape":  [
+                       1,
+                       320,
+                       320,
+                       3
+                   ],
+    "inputType":  "uint8",
+    "inputLayout":  "NHWC",
+    "inputSize":  320,
+    "resizeMode":  "stretch",
+    "colorOrder":  "RGB",
+    "normalization":  "none",
+    "outputNames":  [
+                        "decoded_boxes",
+                        "class_scores"
+                    ],
+    "outputRoleMap":  {
+                          "scores":  "class_scores",
+                          "boxes":  "decoded_boxes"
+                      },
+    "scoreThreshold":  0.35,
+    "iouThreshold":  0.5,
+    "maxDetections":  10,
+    "modelSha256":  "7ca61cf2180b0493c14b3e86c3a93a7d17d09e5d6099e6e61627bbf1d298d8c7",
+    "modelBytes":  13833678
+}
