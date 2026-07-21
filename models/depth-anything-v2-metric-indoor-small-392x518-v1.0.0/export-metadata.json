@@ -20,7 +20,8 @@
   "preprocess": {
     "version": "depth-anything-v2-metric-imagenet-letterbox-392x518-v1",
     "resize": "aspect-preserving fit with centered letterbox padding",
-    "paddingRgb": [124, 116, 104],
+    "paddingRgb01": [0.485, 0.456, 0.406],
+    "paddingNormalized": [0, 0, 0],
     "range": [0, 1],
     "mean": [0.485, 0.456, 0.406],
     "std": [0.229, 0.224, 0.225]
