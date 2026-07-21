@@ -34,11 +34,14 @@
   "validation": {
     "pytorchVsOriginalOnnxMaxAbsError": 0.000005900859832763672,
     "pytorchVsOriginalOnnxMeanAbsError": 0.0000005873864665772999,
-    "contractWrapperVsOriginalOnnx": "bit-exact"
+    "contractWrapperVsOriginalOnnx": "bit-exact",
+    "staticGraphOptimization": "constant-folded the fixed positional-embedding cubic Resize and removed an initializer Identity",
+    "optimizedVsContractWrapperRandomSamples": 3,
+    "optimizedVsContractWrapperMaxAbsError": 0
   },
   "artifact": {
     "file": "model.onnx",
-    "bytes": 98969385,
-    "sha256": "99cbe067419cf9ef199d8c7c86dcd702d5b2d1866a6871294f4c21173682c5d9"
+    "bytes": 98457465,
+    "sha256": "12318a9ee1102606e377633369f96bfa15805e83b19dec65f4b85ee430efe40c"
   }
 }
