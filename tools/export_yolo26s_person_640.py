@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproducibly export and validate the YOLO26s 640 classic-head ONNX asset."""
+"""Reproducibly export and validate a YOLO26 classic-head ONNX asset."""
 
 from __future__ import annotations
 
@@ -23,6 +23,9 @@ from ultralytics import YOLO
 
 
 MODEL_VERSION = "yolo26s-person-coco-640-v1.0.0"
+MODEL_VARIANT = "s"
+MODEL_NAME = "yolo26s-person-coco"
+MODEL_DISPLAY_NAME = "Ultralytics YOLO26s COCO"
 ULTRALYTICS_VERSION = "8.4.34"
 ULTRALYTICS_REVISION = "16665db343532a0f94d04bf2489ee0028da10346"
 CHECKPOINT_URL = "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26s.pt"
@@ -33,6 +36,8 @@ SAMPLE_BYTES = 137_419
 SAMPLE_SHA256 = "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63"
 INPUT_SHAPE = (1, 3, 640, 640)
 OUTPUT_SHAPE = (1, 84, 8400)
+INPUT_SIZE = 640
+EXPECTED_SAMPLE_DETECTIONS = 4
 SEED = 20_260_722
 
 
@@ -60,10 +65,13 @@ def stable_model_bytes(model: onnx.ModelProto) -> bytes:
     metadata = {item.key: item.value for item in model.metadata_props if item.key != "date"}
     metadata.update(
         {
-            "description": "Ultralytics YOLO26s COCO classic-head model for person-only decoding",
+            "description": f"{MODEL_DISPLAY_NAME} classic-head model for person-only decoding",
             "source": CHECKPOINT_URL,
             "source_revision": ULTRALYTICS_REVISION,
-            "export_contract": "images-fp32-nchw-1x3x640x640_to_output0-fp32-1x84x8400",
+            "export_contract": (
+                f"images-fp32-nchw-1x3x{INPUT_SIZE}x{INPUT_SIZE}"
+                f"_to_output0-fp32-1x84x{OUTPUT_SHAPE[2]}"
+            ),
             "end2end": "False",
         }
     )
@@ -120,7 +128,7 @@ def export_model(checkpoint: Path, output_path: Path) -> None:
     exported = Path(
         yolo.export(
             format="onnx",
-            imgsz=640,
+            imgsz=INPUT_SIZE,
             batch=1,
             dynamic=False,
             half=False,
@@ -191,10 +199,11 @@ def validate_sample(sample_path: Path, onnx_path: Path) -> dict[str, Any]:
     if image is None:
         raise RuntimeError(f"Could not decode sample image: {sample_path}")
     height, width = image.shape[:2]
-    scale = min(640 / width, 640 / height)
+    scale = min(INPUT_SIZE / width, INPUT_SIZE / height)
     resized_width, resized_height = round(width * scale), round(height * scale)
     resized = cv2.resize(image, (resized_width, resized_height), interpolation=cv2.INTER_LINEAR)
-    half_pad_x, half_pad_y = (640 - resized_width) / 2, (640 - resized_height) / 2
+    half_pad_x = (INPUT_SIZE - resized_width) / 2
+    half_pad_y = (INPUT_SIZE - resized_height) / 2
     left, right = round(half_pad_x - 0.1), round(half_pad_x + 0.1)
     top, bottom = round(half_pad_y - 0.1), round(half_pad_y + 0.1)
     letterboxed = cv2.copyMakeBorder(
@@ -237,8 +246,11 @@ def validate_sample(sample_path: Path, onnx_path: Path) -> dict[str, Any]:
                 "anchorIndex": int(box[5]),
             }
         )
-    if len(detections) != 4:
-        raise RuntimeError(f"Expected 4 reference person detections, found {len(detections)}")
+    if len(detections) != EXPECTED_SAMPLE_DETECTIONS:
+        raise RuntimeError(
+            f"Expected {EXPECTED_SAMPLE_DETECTIONS} reference person detections, "
+            f"found {len(detections)}"
+        )
     return {
         "imageUrl": SAMPLE_URL,
         "imageBytes": SAMPLE_BYTES,
@@ -264,7 +276,7 @@ def write_release_metadata(
     artifact_sha256 = sha256_file(model_path)
     manifest = {
         "formatVersion": 1,
-        "modelName": "yolo26s-person-coco",
+        "modelName": MODEL_NAME,
         "version": MODEL_VERSION,
         "modelFile": "model.onnx",
         "modelBytes": artifact_bytes,
@@ -274,13 +286,15 @@ def write_release_metadata(
         "inputShape": list(INPUT_SHAPE),
         "inputType": "float32",
         "inputLayout": "NCHW",
-        "inputSize": 640,
+        "inputSize": INPUT_SIZE,
         "resizeMode": "letterbox",
         "resizeInterpolation": "bilinear",
         "colorOrder": "RGB",
         "normalization": "zeroOne",
         "padValue": 114,
-        "preprocessVersion": "yolo-rgb-zero-one-letterbox-640-bilinear-pad114-v1",
+        "preprocessVersion": (
+            f"yolo-rgb-zero-one-letterbox-{INPUT_SIZE}-bilinear-pad114-v1"
+        ),
         "outputName": "output0",
         "outputShape": list(OUTPUT_SHAPE),
         "outputBoxFormat": "cxcywh",
@@ -292,7 +306,7 @@ def write_release_metadata(
         "opset": 11,
     }
     metadata = {
-        "model": "Ultralytics YOLO26s COCO, classic detection head",
+        "model": f"{MODEL_DISPLAY_NAME}, classic detection head",
         "sourceRepository": "https://github.com/ultralytics/ultralytics",
         "sourceRevision": ULTRALYTICS_REVISION,
         "checkpointUrl": CHECKPOINT_URL,
@@ -309,7 +323,7 @@ def write_release_metadata(
             "format": "onnx",
             "opset": 11,
             "batch": 1,
-            "imgsz": 640,
+            "imgsz": INPUT_SIZE,
             "dynamic": False,
             "half": False,
             "int8": False,

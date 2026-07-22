@@ -1,0 +1,38 @@
+{
+  "formatVersion": 1,
+  "modelName": "yolo26n-person-coco",
+  "version": "yolo26n-person-coco-320-v1.0.0",
+  "modelFile": "model.onnx",
+  "modelBytes": 9757927,
+  "modelSha256": "f0953164ca087896ce55c5821811752e4e10c5bad74fa613bdb5ae944c4f9287",
+  "decoder": "yolo26-classic-person-v1",
+  "inputName": "images",
+  "inputShape": [
+    1,
+    3,
+    320,
+    320
+  ],
+  "inputType": "float32",
+  "inputLayout": "NCHW",
+  "inputSize": 320,
+  "resizeMode": "letterbox",
+  "resizeInterpolation": "bilinear",
+  "colorOrder": "RGB",
+  "normalization": "zeroOne",
+  "padValue": 114,
+  "preprocessVersion": "yolo-rgb-zero-one-letterbox-320-bilinear-pad114-v1",
+  "outputName": "output0",
+  "outputShape": [
+    1,
+    84,
+    2100
+  ],
+  "outputBoxFormat": "cxcywh",
+  "classCount": 80,
+  "personClassId": 0,
+  "scoreThreshold": 0.2,
+  "iouThreshold": 0.5,
+  "maxDetections": 5,
+  "opset": 11
+}
