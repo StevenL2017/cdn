@@ -1,0 +1,166 @@
+{
+  "model": "Ultralytics YOLO26s COCO, classic detection head",
+  "sourceRepository": "https://github.com/ultralytics/ultralytics",
+  "sourceRevision": "16665db343532a0f94d04bf2489ee0028da10346",
+  "checkpointUrl": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26s.pt",
+  "checkpointBytes": 20422725,
+  "checkpointSha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+  "export": {
+    "python": "3.13.5",
+    "ultralytics": "8.4.34",
+    "torch": "2.11.0+cpu",
+    "onnx": "1.21.0",
+    "onnxruntime": "1.24.4",
+    "opencv": "4.12.0",
+    "seed": 20260722,
+    "format": "onnx",
+    "opset": 11,
+    "batch": 1,
+    "imgsz": 640,
+    "dynamic": false,
+    "half": false,
+    "int8": false,
+    "simplify": false,
+    "nms": false,
+    "end2end": false,
+    "device": "cpu"
+  },
+  "preprocess": {
+    "version": "yolo-rgb-zero-one-letterbox-640-bilinear-pad114-v1",
+    "resize": "aspect-preserving fit with centered letterbox padding",
+    "resizeInterpolation": "bilinear",
+    "padValueRgb": [
+      114,
+      114,
+      114
+    ],
+    "colorOrder": "RGB",
+    "range": [
+      0,
+      1
+    ],
+    "layout": "NCHW"
+  },
+  "postprocess": {
+    "decoder": "yolo26-classic-person-v1",
+    "boxFormat": "cxcywh",
+    "personClassId": 0,
+    "scoreThreshold": 0.2,
+    "iouThreshold": 0.5,
+    "maxDetections": 5
+  },
+  "validation": {
+    "graph": {
+      "onnxChecker": "passed/full_check",
+      "irVersion": 6,
+      "opset": 11,
+      "operators": [
+        "Add",
+        "Concat",
+        "Constant",
+        "Conv",
+        "Div",
+        "Gather",
+        "MatMul",
+        "MaxPool",
+        "Mul",
+        "Reshape",
+        "Resize",
+        "Shape",
+        "Sigmoid",
+        "Slice",
+        "Softmax",
+        "Split",
+        "Sub",
+        "Transpose"
+      ],
+      "externalDataTensors": 0
+    },
+    "pytorchVsOnnxRuntime": {
+      "seed": 20260722,
+      "inputDistribution": "numpy.default_rng.random float32 [0,1]",
+      "pytorchShape": [
+        1,
+        84,
+        8400
+      ],
+      "onnxRuntimeShape": [
+        1,
+        84,
+        8400
+      ],
+      "maxAbsError": 0.001861572265625,
+      "meanAbsError": 2.0553254671540344e-06,
+      "boxMaxAbsError": 0.001861572265625,
+      "scoreMaxAbsError": 1.7577644939592574e-07,
+      "provider": "CPUExecutionProvider"
+    },
+    "fixedImageDecode": {
+      "imageUrl": "https://ultralytics.com/images/bus.jpg",
+      "imageBytes": 137419,
+      "imageSha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+      "imageSize": [
+        810,
+        1080
+      ],
+      "letterboxScale": 0.5925925925925926,
+      "letterboxPadding": [
+        80,
+        0,
+        80,
+        0
+      ],
+      "scoreThreshold": 0.2,
+      "iouThreshold": 0.5,
+      "candidateCount": 38,
+      "detections": [
+        {
+          "xyxy": [
+            667.974,
+            392.969,
+            810,
+            880.724
+          ],
+          "confidence": 0.9257128,
+          "anchorIndex": 8256
+        },
+        {
+          "xyxy": [
+            48.776,
+            401.021,
+            247.321,
+            903.474
+          ],
+          "confidence": 0.9151119,
+          "anchorIndex": 8284
+        },
+        {
+          "xyxy": [
+            222.779,
+            408.609,
+            344.595,
+            861.118
+          ],
+          "confidence": 0.8669721,
+          "anchorIndex": 8267
+        },
+        {
+          "xyxy": [
+            0.0,
+            552.622,
+            78.429,
+            874.72
+          ],
+          "confidence": 0.8413604,
+          "anchorIndex": 8263
+        }
+      ]
+    }
+  },
+  "artifact": {
+    "file": "model.onnx",
+    "bytes": 38232928,
+    "sha256": "f5368fa8f5de2cd43d0597ef568ccb418e47e4fd5de303f516a06065ffd5127a",
+    "gitStorage": "ordinary Git blob; no Git LFS"
+  }
+}
