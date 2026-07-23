@@ -1,0 +1,27 @@
+{
+  "formatVersion": 1,
+  "modelName": "depth-anything-v2-metric-indoor-small",
+  "version": "depth-anything-v2-metric-indoor-small-294x392-v1.1.0",
+  "modelFile": "model.onnx",
+  "modelBytes": 97789213,
+  "modelSha256": "1cf3dc9e2272285377e0d499f2c9683f8517a8e93d0f7d0e701953942cf126cc",
+  "inputName": "image",
+  "outputName": "depth",
+  "inputShape": [
+    1,
+    3,
+    294,
+    392
+  ],
+  "outputShape": [
+    1,
+    1,
+    294,
+    392
+  ],
+  "preprocessVersion": "depth-anything-v2-metric-imagenet-letterbox-294x392-v1",
+  "unit": "meter",
+  "minDepthMeters": 0.5,
+  "maxDepthMeters": 20,
+  "opset": 11
+}
